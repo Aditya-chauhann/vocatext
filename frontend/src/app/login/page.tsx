@@ -61,7 +61,7 @@ export default function LoginPage() {
             marginBottom: '1rem',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <AlertCircle size={15} color="var(--danger)" flexShrink={0} />
+              <AlertCircle size={15} color="var(--danger)" style={{ flexShrink: 0 }} />
               <span style={{ fontSize: '0.875rem', color: '#ff7070', fontWeight: 400 }}>{error}</span>
             </div>
             <button onClick={() => setError('')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--danger)', padding: '2px', flexShrink: 0 }}>
