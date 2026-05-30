@@ -16,7 +16,10 @@ jwt = JWTManager()
 def create_app():
     app = Flask(__name__)
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL", "sqlite:///dev.db")
+    db_url = os.getenv("DATABASE_URL", "sqlite:///dev.db")
+    if db_url.startswith("postgresql://"):
+        db_url = db_url.replace("postgresql://", "postgresql+psycopg://", 1)
+    app.config["SQLALCHEMY_DATABASE_URI"] = db_url
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY", "dev-secret")
     app.config["MAX_CONTENT_LENGTH"] = int(os.getenv("UPLOAD_MAX_MB", 50)) * 1024 * 1024
